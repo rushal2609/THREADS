@@ -1,318 +1,937 @@
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>THREADS - Fashion Store</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THREADS | Fashion Store</title>
 
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial;
-            background-color: #f7f5ef;
-            color: #26382c;
-        }
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        header {
-            background-color: #26382c;
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
+body {
+    font-family: Arial, sans-serif;
+    background: #f8f6f1;
+    color: #26352c;
+}
 
-        nav {
-            background-color: #d9e2d3;
-            padding: 15px;
-            text-align: center;
-        }
+button, input, select, textarea {
+    font: inherit;
+}
 
-        nav a {
-            color: #26382c;
-            text-decoration: none;
-            margin: 15px;
-        }
+.announcement {
+    background: #263a2f;
+    color: white;
+    text-align: center;
+    padding: 11px;
+    font-size: 11px;
+    letter-spacing: 2px;
+}
 
-        .hero {
-            text-align: center;
-            padding: 70px 20px;
-            background-color: #d9e2d3;
-        }
+header {
+    padding: 23px 7%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #f8f6f1;
+}
 
-        .hero h1 {
-            font-size: 40px;
-        }
+.logo {
+    font-size: 30px;
+    font-weight: 900;
+    letter-spacing: 4px;
+}
 
-        button {
-            background-color: #26382c;
-            color: white;
-            border: none;
-            padding: 10px 18px;
-            cursor: pointer;
-            margin: 5px;
-        }
+.logo span {
+    color: #d96e45;
+}
 
-        button:hover {
-            background-color: #d36c45;
-        }
+nav {
+    display: flex;
+    gap: 30px;
+}
 
-        h2 {
-            text-align: center;
-            margin-top: 35px;
-        }
+nav a {
+    text-decoration: none;
+    color: #26352c;
+    font-size: 14px;
+    font-weight: bold;
+}
 
-        .filters {
-            text-align: center;
-            margin: 20px;
-        }
+nav a:hover {
+    color: #d96e45;
+}
 
-        .products {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 20px;
-            padding: 20px;
-        }
+.cart-count {
+    background: #d96e45;
+    color: white;
+    border-radius: 50%;
+    padding: 3px 8px;
+}
 
-        .product {
-            background-color: white;
-            width: 220px;
-            padding: 15px;
-            text-align: center;
-        }
+/* IMPROVED HOMEPAGE */
 
-        .product img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
+.hero {
+    min-height: 570px;
+    margin: 0 4%;
+    background: #e9e7df;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    overflow: hidden;
+}
 
-        #cart {
-            background-color: white;
-            padding: 25px;
-            margin: 30px;
-        }
+.hero-content {
+    padding: 60px;
+}
 
-        input, select {
-            padding: 10px;
-            margin: 5px;
-        }
+.eyebrow {
+    font-size: 12px;
+    letter-spacing: 3px;
+    color: #d96e45;
+    font-weight: bold;
+    margin-bottom: 22px;
+}
 
-        footer {
-            background-color: #26382c;
-            color: white;
-            text-align: center;
-            padding: 20px;
-            margin-top: 30px;
-        }
-    </style>
+.hero h1 {
+    font-family: Georgia, serif;
+    font-size: clamp(45px, 5vw, 75px);
+    line-height: 1.08;
+    font-weight: normal;
+    margin-bottom: 22px;
+}
+
+.hero h1 em {
+    color: #d96e45;
+}
+
+.hero p {
+    color: #657168;
+    line-height: 1.9;
+    max-width: 400px;
+    margin-bottom: 30px;
+}
+
+.btn {
+    background: #263a2f;
+    color: white;
+    border: none;
+    padding: 15px 27px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.btn:hover {
+    background: #d96e45;
+    transform: translateY(-3px);
+}
+
+.hero-image {
+    width: 100%;
+    height: 570px;
+    object-fit: cover;
+}
+
+/* CATEGORY SECTION */
+
+.categories {
+    padding: 75px 7%;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.section-title h2 {
+    font-family: Georgia, serif;
+    font-size: 38px;
+    font-weight: normal;
+}
+
+.section-title p {
+    color: #777;
+    margin-top: 10px;
+}
+
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.category-card {
+    height: 330px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.category-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: .4s;
+}
+
+.category-card:hover img {
+    transform: scale(1.06);
+}
+
+.category-card div {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    background: white;
+    padding: 13px 22px;
+    font-weight: bold;
+}
+
+/* PRODUCTS */
+
+.section {
+    padding: 65px 7%;
+}
+
+.section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.section-heading h2 {
+    font-family: Georgia, serif;
+    font-size: 37px;
+    font-weight: normal;
+}
+
+.products {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.product {
+    background: white;
+    padding: 12px;
+    transition: .3s;
+}
+
+.product:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px #0001;
+}
+
+.product img {
+    width: 100%;
+    height: 270px;
+    object-fit: cover;
+}
+
+.product-info {
+    padding: 15px 5px;
+}
+
+.product-info small {
+    color: #888;
+}
+
+.product-info h3 {
+    margin: 9px 0 15px;
+}
+
+.product-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.add-btn {
+    background: #263a2f;
+    color: white;
+    border: none;
+    padding: 10px 17px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.add-btn:hover {
+    background: #d96e45;
+}
+
+/* OVERLAY PAGES */
+
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: #18251d88;
+    backdrop-filter: blur(13px);
+    display: none;
+    z-index: 1000;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.overlay.open {
+    display: block;
+}
+
+.page {
+    background: #f8f6f1;
+    max-width: 1200px;
+    min-height: 85vh;
+    margin: 20px auto;
+    padding: 30px;
+    animation: appear .3s ease;
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+}
+
+.back-btn {
+    background: #263a2f;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    cursor: pointer;
+}
+
+/* FILTERS */
+
+.filters {
+    display: flex;
+    gap: 10px;
+    margin: 25px 0;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 11px 20px;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    background: transparent;
+    cursor: pointer;
+}
+
+.filter-btn.active,
+.filter-btn:hover {
+    background: #263a2f;
+    color: white;
+}
+
+.sort {
+    padding: 10px;
+    margin-left: auto;
+}
+
+/* BAG */
+
+.bag-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 25px;
+}
+
+.bag-box {
+    background: white;
+    padding: 25px;
+}
+
+.bag-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.remove-btn {
+    color: #d96e45;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+.total {
+    display: flex;
+    justify-content: space-between;
+    font-size: 21px;
+    font-weight: bold;
+    margin-top: 25px;
+}
+
+form label {
+    display: block;
+    margin: 12px 0 7px;
+}
+
+form input, form textarea, form select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+}
+
+form textarea {
+    min-height: 80px;
+}
+
+form button {
+    width: 100%;
+    margin-top: 18px;
+}
+
+.success {
+    display: none;
+    background: #d9e3d5;
+    padding: 15px;
+    margin-top: 15px;
+}
+
+footer {
+    background: #263a2f;
+    color: white;
+    text-align: center;
+    padding: 40px;
+    line-height: 2;
+}
+
+@media(max-width:800px) {
+    .hero {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-content {
+        padding: 35px;
+    }
+
+    .hero-image {
+        height: 350px;
+    }
+
+    .category-grid,
+    .products {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .bag-layout {
+        grid-template-columns: 1fr;
+    }
+
+    header {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+}
+
+@media(max-width:500px) {
+    .category-grid,
+    .products {
+        grid-template-columns: 1fr;
+    }
+
+    nav {
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+
+    .hero h1 {
+        font-size: 45px;
+    }
+
+    .section-heading {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+}
+</style>
 </head>
 
 <body>
 
-    <header>
-        <h1>THREADS.</h1>
-        <p>Everyday Pieces. Your Kind of Style.</p>
-    </header>
+<div class="announcement">
+    FREE DELIVERY ON ORDERS ABOVE ₹1,499 | NEW COLLECTION 2026
+</div>
+
+<header>
+    <div class="logo">THREADS<span>.</span></div>
 
     <nav>
-        <a href="#home">Home</a>
-        <a href="#shop">Shop</a>
-        <a href="#cart">Your Bag</a>
-        <a href="#about">About</a>
-    </nav>
-
-    <section class="hero" id="home">
-        <h1>EVERYDAY STYLE, REDEFINED.</h1>
-        <p>Discover your favourite looks with THREADS.</p>
-        <a href="#shop">
-            <button>SHOP NOW</button>
+        <a href="#home" onclick="navigate(event,'home')">Home</a>
+        <a href="#shop" onclick="navigate(event,'shop')">Shop</a>
+        <a href="#bag" onclick="navigate(event,'bag')">
+            Bag (<span id="cartCount">0</span>)
         </a>
-    </section>
+        <a href="#about" onclick="navigate(event,'about')">About</a>
+    </nav>
+</header>
 
-    <h2 id="shop">OUR COLLECTION</h2>
+<main id="home">
 
-    <div class="filters">
-        <button onclick="filterProducts('All')">All</button>
-        <button onclick="filterProducts('Men')">Men</button>
-        <button onclick="filterProducts('Women')">Women</button>
-        <button onclick="filterProducts('Accessories')">Accessories</button>
+<section class="hero">
 
-        <br><br>
+    <div class="hero-content">
 
-        <select onchange="sortProducts(this.value)">
-            <option value="">Sort Products</option>
-            <option value="low">Price: Low to High</option>
-            <option value="high">Price: High to Low</option>
-        </select>
-    </div>
+        <div class="eyebrow">THE NEW SEASON COLLECTION</div>
 
-    <div class="products" id="productList">
+        <h1>
+            Define Your<br>
+            <em>Own Style.</em>
+        </h1>
 
-        <div class="product" data-category="Men" data-price="799">
-            <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400" alt="T-shirt">
-            <h3>Classic T-Shirt</h3>
-            <p>Men</p>
-            <p>₹799</p>
-            <button onclick="addToCart('Classic T-Shirt',799)">Add to Bag</button>
-        </div>
+        <p>
+            Discover fashion that speaks for you.
+            Explore timeless essentials, modern outfits
+            and everyday styles designed to make
+            you feel confident.
+        </p>
 
-        <div class="product" data-category="Women" data-price="1299">
-            <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=400" alt="Dress">
-            <h3>Summer Dress</h3>
-            <p>Women</p>
-            <p>₹1299</p>
-            <button onclick="addToCart('Summer Dress',1299)">Add to Bag</button>
-        </div>
-
-        <div class="product" data-category="Men" data-price="1899">
-            <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=400" alt="Jacket">
-            <h3>Casual Jacket</h3>
-            <p>Men</p>
-            <p>₹1899</p>
-            <button onclick="addToCart('Casual Jacket',1899)">Add to Bag</button>
-        </div>
-
-        <div class="product" data-category="Accessories" data-price="599">
-            <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400" alt="Watch">
-            <h3>Classic Watch</h3>
-            <p>Accessories</p>
-            <p>₹599</p>
-            <button onclick="addToCart('Classic Watch',599)">Add to Bag</button>
-        </div>
+        <button class="btn" onclick="navigate(null,'shop')">
+            SHOP COLLECTION →
+        </button>
 
     </div>
 
-    <section id="cart">
-        <h2>YOUR SHOPPING BAG</h2>
+    <img class="hero-image"
+         src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=1100"
+         alt="Fashion collection">
 
-        <div id="cartItems">
-            Your bag is empty.
+</section>
+
+<section class="categories">
+
+    <div class="section-title">
+        <div class="eyebrow">FIND YOUR LOOK</div>
+        <h2>Explore Categories</h2>
+        <p>Find something that matches your style.</p>
+    </div>
+
+    <div class="category-grid">
+
+        <div class="category-card" onclick="openCategory('Men')">
+            <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=700">
+            <div>MEN'S COLLECTION →</div>
         </div>
 
-        <h3 id="total">Total: ₹0</h3>
+        <div class="category-card" onclick="openCategory('Women')">
+            <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=700">
+            <div>WOMEN'S COLLECTION →</div>
+        </div>
 
-        <h2>CHECKOUT</h2>
+        <div class="category-card" onclick="openCategory('Accessories')">
+            <img src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=700">
+            <div>ACCESSORIES →</div>
+        </div>
 
-        <form onsubmit="placeOrder(event)">
-            <input type="text" placeholder="Your Name" required>
-            <input type="tel" placeholder="Phone Number" required>
-            <br>
-            <input type="text" placeholder="Delivery Address" required>
-            <br>
+    </div>
 
-            <select required>
-                <option value="">Select Payment Method</option>
-                <option>Cash on Delivery</option>
-                <option>Online Payment (Demo)</option>
+</section>
+
+<section class="section">
+
+    <div class="section-heading">
+        <h2>Trending Products<span class="accent">.</span></h2>
+        <button class="btn" onclick="navigate(null,'shop')">
+            VIEW ALL →
+        </button>
+    </div>
+
+    <div class="products" id="featuredProducts"></div>
+
+</section>
+
+</main>
+
+<footer>
+    <h2>THREADS.</h2>
+    <p>Style without rules. Confidence without limits.</p>
+    <p>© 2026 THREADS. All rights reserved.</p>
+</footer>
+
+<div class="overlay" id="overlay">
+
+    <div class="page">
+
+        <div class="page-header">
+            <div class="logo">THREADS<span>.</span></div>
+            <button class="back-btn" onclick="closePage()">← BACK</button>
+        </div>
+
+        <div id="pageContent"></div>
+
+    </div>
+
+</div>
+
+<script>
+
+// PRODUCT DATA
+
+const products = [
+    {id:1,name:"Classic White Tee",category:"Men",price:499,image:"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=700"},
+    {id:2,name:"Everyday Denim Jacket",category:"Men",price:1499,image:"https://images.unsplash.com/photo-1543076447-215ad9ba6923?w=700"},
+    {id:3,name:"Relaxed Fit Shirt",category:"Men",price:899,image:"https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=700"},
+    {id:4,name:"Summer Casual Dress",category:"Women",price:1299,image:"https://images.unsplash.com/photo-1539008835657-9e8e9680c956?w=700"},
+    {id:5,name:"Classic Sunglasses",category:"Accessories",price:399,image:"https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=700"},
+    {id:6,name:"Canvas Sneakers",category:"Accessories",price:1299,image:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=700"}
+];
+
+let cart = [];
+let category = "All";
+let sortMode = "featured";
+
+function money(price) {
+    return "₹" + price.toLocaleString("en-IN");
+}
+
+// PRODUCT CARD WITH QUANTITY
+
+function productCard(p) {
+
+    let item = cart.find(x => x.id === p.id);
+    let quantity = item ? item.quantity : 0;
+
+    return `
+    <div class="product">
+
+        <img src="${p.image}" alt="${p.name}">
+
+        <div class="product-info">
+
+            <small>${p.category}</small>
+
+            <h3>${p.name}</h3>
+
+            <div class="product-bottom">
+
+                <b>${money(p.price)}</b>
+
+                <button class="add-btn"
+                    onclick="addToBag(${p.id})">
+                    ${quantity > 0 ? "+" + quantity : "+ Add"}
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+    `;
+}
+
+// HOMEPAGE
+
+function showFeatured() {
+    document.getElementById("featuredProducts").innerHTML =
+        products.slice(0,3).map(productCard).join("");
+}
+
+// NAVIGATION
+
+function navigate(event,page) {
+
+    if(event) event.preventDefault();
+
+    if(page === "home") {
+        closePage();
+        return;
+    }
+
+    document.getElementById("overlay").style.display = "block";
+
+    if(page === "shop") showShop();
+    if(page === "bag") showBag();
+    if(page === "about") showAbout();
+
+    setTimeout(() => {
+        document.getElementById("overlay").classList.add("open");
+    },10);
+}
+
+function closePage() {
+
+    let overlay = document.getElementById("overlay");
+
+    overlay.classList.remove("open");
+
+    setTimeout(() => {
+        overlay.style.display = "none";
+    },300);
+
+}
+
+// CATEGORY LINKS
+
+function openCategory(c) {
+    category = c;
+    sortMode = "featured";
+    navigate(null,"shop");
+}
+
+// SHOP PAGE
+
+function showShop() {
+
+    document.getElementById("pageContent").innerHTML = `
+
+        <h1>Our Collection<span class="accent">.</span></h1>
+
+        <div class="filters">
+
+            ${["All","Men","Women","Accessories"].map(c => `
+                <button class="filter-btn ${category === c ? "active" : ""}"
+                onclick="filterProducts('${c}')">${c}</button>
+            `).join("")}
+
+            <select class="sort" onchange="sortProducts(this.value)">
+                <option value="featured">Featured</option>
+                <option value="low">Price: Low to High</option>
+                <option value="high">Price: High to Low</option>
+                <option value="az">Name: A to Z</option>
             </select>
 
+        </div>
+
+        <div class="products" id="shopProducts"></div>
+    `;
+
+    document.querySelector(".sort").value = sortMode;
+
+    renderShop();
+}
+
+function filterProducts(c) {
+    category = c;
+    showShop();
+}
+
+function sortProducts(v) {
+    sortMode = v;
+    renderShop();
+}
+
+function renderShop() {
+
+    let list = [...products];
+
+    if(category !== "All") {
+        list = list.filter(p => p.category === category);
+    }
+
+    if(sortMode === "low") list.sort((a,b) => a.price-b.price);
+    if(sortMode === "high") list.sort((a,b) => b.price-a.price);
+    if(sortMode === "az") list.sort((a,b) => a.name.localeCompare(b.name));
+
+    document.getElementById("shopProducts").innerHTML =
+        list.map(productCard).join("");
+}
+
+// ADD TO BAG
+
+function addToBag(id) {
+
+    let item = cart.find(p => p.id === id);
+
+    if(item) {
+        item.quantity++;
+    } else {
+        cart.push({id:id,quantity:1});
+    }
+
+    updateCount();
+
+    showFeatured();
+
+    if(document.getElementById("shopProducts")) {
+        renderShop();
+    }
+}
+
+// CART COUNT
+
+function updateCount() {
+
+    let count = cart.reduce(
+        (total,item) => total + item.quantity,0
+    );
+
+    document.getElementById("cartCount").innerText = count;
+}
+
+// SHOPPING BAG
+
+function showBag() {
+
+    let total = cart.reduce((sum,item) => {
+        let p = products.find(x => x.id === item.id);
+        return sum + p.price * item.quantity;
+    },0);
+
+    document.getElementById("pageContent").innerHTML = `
+
+        <h1>Your Shopping Bag<span class="accent">.</span></h1>
+
+        <div class="bag-layout">
+
+            <div class="bag-box">
+
+                <h2>Order Summary</h2>
+
+                ${cart.length ? cart.map(item => {
+
+                    let p = products.find(x => x.id === item.id);
+
+                    return `
+                    <div class="bag-item">
+
+                        <div>
+                            <b>${p.name}</b><br>
+                            ${money(p.price)} × ${item.quantity}
+                        </div>
+
+                        <button class="remove-btn"
+                            onclick="removeItem(${p.id})">
+                            Remove
+                        </button>
+
+                    </div>
+                    `;
+
+                }).join("") : "<p>Your bag is empty.</p>"}
+
+                <div class="total">
+                    <span>Total</span>
+                    <span>${money(total)}</span>
+                </div>
+
+            </div>
+
+            <div class="bag-box">
+
+                <h2>Delivery Details</h2>
+
+                <form onsubmit="placeOrder(event)">
+
+                    <label>Name</label>
+                    <input required placeholder="Your name">
+
+                    <label>Phone</label>
+                    <input type="tel" pattern="[0-9]{10}" required placeholder="Mobile number">
+
+                    <label>Address</label>
+                    <textarea required placeholder="Delivery address"></textarea>
+
+                    <label>Payment Method</label>
+                    <select required>
+                        <option value="">Choose payment method</option>
+                        <option>Cash on Delivery</option>
+                        <option>UPI (Demo)</option>
+                    </select>
+
+                    <button class="btn" type="submit"
+                    ${cart.length ? "" : "disabled"}>
+                        PLACE ORDER →
+                    </button>
+
+                </form>
+
+                <div class="success" id="successMessage">
+                    ✓ Your demo order was placed successfully!
+                </div>
+
+            </div>
+
+        </div>
+    `;
+}
+
+function removeItem(id) {
+    cart = cart.filter(x => x.id !== id);
+    updateCount();
+    showBag();
+    showFeatured();
+}
+
+function placeOrder(event) {
+
+    event.preventDefault();
+
+    if(cart.length === 0) return;
+
+    cart = [];
+
+    updateCount();
+
+    showBag();
+
+    document.getElementById("successMessage").style.display = "block";
+
+    showFeatured();
+}
+
+// ABOUT PAGE
+
+function showAbout() {
+
+    document.getElementById("pageContent").innerHTML = `
+
+        <div class="about-box">
+
+            <h1>Style Without Rules.</h1>
+
+            <p>
+                THREADS is an online fashion store designed
+                to make shopping simple, modern and enjoyable.
+            </p>
+
             <br>
-            <button type="submit">PLACE ORDER</button>
-        </form>
-    </section>
 
-    <section id="about">
-        <h2>ABOUT THREADS</h2>
-        <p style="text-align:center; padding:10px 25px;">
-            THREADS is an online fashion store offering simple,
-            comfortable and stylish clothing for everyone.
-        </p>
-    </section>
+            <h2>Technologies Used</h2>
 
-    <footer>
-        <p>THREADS. | Online Fashion Store</p>
-        <p>Thank you for shopping with us!</p>
-    </footer>
+            <p>
+                HTML – Website structure<br>
+                CSS – Website design<br>
+                JavaScript – Interactive features
+            </p>
 
-    <script>
+            <br>
 
-        // Shopping cart
-        var cart = [];
+            <h3>College Project</h3>
 
-        // Add product to cart
-        function addToCart(name, price) {
-            cart.push({name: name, price: price});
-            showCart();
-        }
+            <p>Serial Number: 48</p>
 
-        // Display cart items
-        function showCart() {
-            var items = "";
-            var total = 0;
+        </div>
+    `;
+}
 
-            for (var i = 0; i < cart.length; i++) {
-                items += "<p>" + cart[i].name +
-                " - ₹" + cart[i].price +
-                " <button onclick='removeItem(" + i + ")'>Remove</button></p>";
+// START WEBSITE
 
-                total += cart[i].price;
-            }
+showFeatured();
+updateCount();
 
-            if (cart.length == 0) {
-                items = "Your bag is empty.";
-            }
-
-            document.getElementById("cartItems").innerHTML = items;
-            document.getElementById("total").innerHTML = "Total: ₹" + total;
-        }
-
-        // Remove product
-        function removeItem(index) {
-            cart.splice(index, 1);
-            showCart();
-        }
-
-        // Filter products
-        function filterProducts(category) {
-            var products = document.getElementsByClassName("product");
-
-            for (var i = 0; i < products.length; i++) {
-                if (category == "All" ||
-                    products[i].dataset.category == category) {
-                    products[i].style.display = "block";
-                } else {
-                    products[i].style.display = "none";
-                }
-            }
-        }
-
-        // Sort products
-        function sortProducts(order) {
-            var list = document.getElementById("productList");
-            var products = Array.from(list.children);
-
-            products.sort(function(a, b) {
-                var priceA = Number(a.dataset.price);
-                var priceB = Number(b.dataset.price);
-
-                if (order == "low") {
-                    return priceA - priceB;
-                }
-
-                if (order == "high") {
-                    return priceB - priceA;
-                }
-            });
-
-            for (var i = 0; i < products.length; i++) {
-                list.appendChild(products[i]);
-            }
-        }
-
-        // Place order
-        function placeOrder(event) {
-            event.preventDefault();
-
-            if (cart.length == 0) {
-                alert("Your shopping bag is empty!");
-            } else {
-                alert("Thank you! Your order has been placed successfully.");
-                cart = [];
-                showCart();
-                event.target.reset();
-            }
-        }
-
-    </script>
+</script>
 
 </body>
 </html>
